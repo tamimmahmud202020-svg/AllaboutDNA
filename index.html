@@ -284,7 +284,8 @@ const LV=[[0,'🧫 কোষ'],[40,'🧬 নিউক্লিওটাইড'],
 const lv=(x=P.xp)=>LV.reduce((a,l,i)=>x>=l[0]?i:a,0);
 const BADGES=[['📖','পাঠক',()=>P.read.length>=7],['🃏','কার্ড-মাস্টার',()=>P.known.length>=CARDS.length],['🎯','কুইজ চ্যাম্প',()=>P.best>=9],['🔬','ল্যাব বিশেষজ্ঞ',()=>P.lab>=3],['🔄','প্রতিরূপ গুরু',()=>P.rep>0],['🔮','নিজের DNA',()=>P.nm>0]];
 function prog(){const L=lv(),n=LV[L+1];
- $('#stk').textContent='🔥 '+bn(P.streak||1)+' দিন';
+ $('#stk').textContent='🐰 '+bn(P.streak|
+                             )+'';
  $('#bd').innerHTML=BADGES.map(b=>{const ok=b[2]();if(ok&&!P.bg.includes(b[1])){P.bg.push(b[1]);save();toast('🏅 নতুন ব্যাজ: '+b[1])}return`<span class="${ok?'on':''}" title="${b[1]}">${b[0]}</span>`}).join('')}
 function addXP(n){const o=lv();P.xp+=n;save();toast('+'+bn(n)+' XP ✨');if(lv()>o){confetti();toast('🎉 লেভেল আপ! '+LV[lv()][1])}prog()}
 function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2300)}
